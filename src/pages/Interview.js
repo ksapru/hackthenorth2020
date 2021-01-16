@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Webcam from "react-webcam"
 
+
 export class Interview extends Component {
     state = {
         timerOn: false, //timer will not start automatically
@@ -48,6 +49,8 @@ export class Interview extends Component {
         let minutes = ("0" + (Math.floor(timerTime / 60000) % 60)).slice(-2);
         let seconds = ("0" + Math.floor(timerTime / 1000)).slice(-2);
 
+       
+
         return (
             <div>
                 <h2 style={{
@@ -77,7 +80,7 @@ export class Interview extends Component {
 
                 <Webcam
                     style={{ //centering the videofeed
-                        position: 'absolute', left: '50%', top: '57%',
+                        position: 'absolute', left: '50%', top: '70%',
                         transform: 'translate(-50%, -50%)'
                     }}
                     audio={true}
