@@ -8,11 +8,13 @@ import Card from 'react-bootstrap/Card';
 
 const useStyles = makeStyles({
 	container: {
-		paddingLeft: '60px'
+        paddingLeft: '20px',
+        align:'center'
 	},
     button: {
 		color: 'white',
-		textTransform: 'None'
+        textTransform: 'None',
+        alignContent: 'center'
     }
 });
 
@@ -22,21 +24,20 @@ function Landing() {
 	return (
 
       
-		<div style={{width:"60%"}}> 
-                <h6> bug fix </h6>
-                <h6> bug fix </h6>
-                <h6> bug fix </h6>
-          
-        <Card 
-        border="success" 
-        style={{ width: '38rem' }}
-        >
-			<Grid container spacing={2} className={classes.container}>
-				<Grid item xs={10}>
-					<Typography varaint="h1" style={{color: "pink", fontSize: "110px", fontFamily: "Righteous", marginTop: "50px"}}>Cheernut.</Typography>
-                    <Typography varaint="h1" style={{color: "pink", fontSize: "60px", fontFamily: "Righteous", marginTop: "-50px"}}>(cheet-or-nut)</Typography>
-					<Typography varaint="h2" style={{color: "pink", fontSize: "20px", marginTop: "20px"}}><strong>An AI tool to detect and pick up potential instances of cheating during exams over Zoom calls</strong></Typography>
-					<Typography varaint="h3" style={{color: "pink", fontSize: "17px"}}>Talko will work with you to improve enunciation, pace, volume and much more. Input your speech now, and let's get talking!</Typography>
+		<div className="this" style={{width:"60%"}}> 
+                <h6> bug  </h6>
+                <h6> bug  </h6>
+                <h6> bug  </h6>
+  
+        <Card border="success" style={{ width: '38rem' }} align="left"  >
+    
+
+			<Grid container spacing={2} className={classes.container} align="center">
+				<Grid item xs={200}>
+					<Typography varaint="h1" style={{color: "pink", fontSize: "110px", fontFamily: "Righteous", marginTop: "50px"}}>IntAI.</Typography>
+                    <Typography varaint="h1" style={{color: "pink", fontSize: "30px", fontFamily: "Righteous", marginTop: "-30px"}}> Your home for interview preparation!</Typography>
+					<Typography varaint="h2" style={{color: "pink", fontSize: "20px", marginTop: "20px"}}><strong>Welcome to an AI tool to detect and pick up potential shortcomings and help you prepare to be a better interview taker!</strong></Typography>
+					<Typography varaint="h3" style={{color: "pink", fontSize: "17px"}}>IntAI will work with you to improve enunciation, pace, volume and much more. Input your speech now, and let's get talking!</Typography>
 					<br />
                     <Button href="/Interview" variant="outlined" color="primary" >
 						<Typography variant="h4" display="inline"><b>Get Started</b></Typography>&nbsp;&nbsp;
