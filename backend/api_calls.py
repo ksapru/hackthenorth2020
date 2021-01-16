@@ -3,6 +3,9 @@ from google.cloud import speech
 from google.cloud import vision
 from google.cloud import storage
 from google.cloud import language_v1
+from google.cloud import videointelligence_v1p3beta1 as videointelligence
+#from google.cloud import videointelligence
+
 import io
 
 def implicit():
@@ -36,7 +39,6 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
 
 def get_video(path):
     """Transcribe speech from a video stored on GCS."""
-    from google.cloud import videointelligence
 
     video_client = videointelligence.VideoIntelligenceServiceClient()
     features = [videointelligence.Feature.SPEECH_TRANSCRIPTION]
@@ -61,12 +63,17 @@ def get_video(path):
     # There is only one annotation_result since only
     # one video is processed.
     annotation_results = result.annotation_results[0]
+
+    final_text = ""
     for speech_transcription in annotation_results.speech_transcriptions:
 
         # The number of alternatives for each transcription is limited by
         # SpeechTranscriptionConfig.max_alternatives.
         # Each alternative is a different possible transcription
         # and has its own confidence score.
+        final_text = speech_transcription.alternatives[0].transcript
+        print(final_text)
+        """
         for alternative in speech_transcription.alternatives:
             print("Alternative level information:")
 
@@ -85,7 +92,68 @@ def get_video(path):
                         word,
                     )
                 )
-        
+                """
+    return(final_text)
+
+def detect_faces2(gcs_uri="gs://prac_interview/testvideo.mp4"):
+    """Detects faces in a video."""
+
+    client = videointelligence.VideoIntelligenceServiceClient()
+
+    # Configure the request
+    config = videointelligence.FaceDetectionConfig(
+        include_bounding_boxes=True, include_attributes=True
+    )
+    context = videointelligence.VideoContext(face_detection_config=config)
+
+    # Start the asynchronous request
+    operation = client.annotate_video(
+        request={
+            "features": [videointelligence.Feature.FACE_DETECTION],
+            "input_uri": gcs_uri,
+            "video_context": context,
+        }
+    )
+
+    print("\nProcessing video for face detection annotations.")
+    result = operation.result(timeout=300)
+
+    print("\nFinished processing.\n")
+
+    # Retrieve the first result, because a single video was processed.
+    annotation_result = result.annotation_results[0]
+
+    for annotation in annotation_result.face_detection_annotations:
+        print("Face detected:")
+        for track in annotation.tracks:
+            print(
+                "Segment: {}s to {}s".format(
+                    track.segment.start_time_offset.seconds
+                    + track.segment.start_time_offset.microseconds / 1e6,
+                    track.segment.end_time_offset.seconds
+                    + track.segment.end_time_offset.microseconds / 1e6,
+                )
+            )
+
+            # Each segment includes timestamped faces that include
+            # characteristics of the face detected.
+            # Grab the first timestamped face
+            timestamped_object = track.timestamped_objects[0]
+            """box = timestamped_object.normalized_bounding_box
+            print("Bounding box:")
+            print("\tleft  : {}".format(box.left))
+            print("\ttop   : {}".format(box.top))
+            print("\tright : {}".format(box.right))
+            print("\tbottom: {}".format(box.bottom))"""
+
+            # Attributes include glasses, headwear, smiling, direction of gaze
+            print("Attributes:")
+            for attribute in timestamped_object.attributes:
+                print(
+                    "\t{}:{} {}".format(
+                        attribute.name, attribute.value, attribute.confidence
+                    )
+                )
 
 def detect_faces(path):
     """Detects faces in an image."""
@@ -187,3 +255,4 @@ if __name__ == '__main__':
     #upload_blob(bucket_name,source_file_name,destination_blob_name)
     video_path = "gs://prac_interview/testvideo.mp4"
     get_video(video_path)
+    detect_faces2()
