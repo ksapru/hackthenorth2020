@@ -6,13 +6,13 @@ export default function Interview() {
         width: 575,
         height: 375,
         mirrored: true,
-        facingMode: "user" //front-facing camera
+        facingMode: "user"
     };
 
     return (
         <div>
             <Webcam
-                style={{ //centering the videofeed
+                style={{
                     position: 'absolute', left: '50%', top: '57%',
                     transform: 'translate(-50%, -50%)'
                 }}
