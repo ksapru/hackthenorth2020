@@ -15,6 +15,78 @@ def implicit():
     buckets = list(storage_client.list_buckets())
     print(buckets)
 
+# This method uploads files to cloud storage
+def upload_blob(bucket_name, source_file_name, destination_blob_name):
+    """Uploads a file to the bucket."""
+    # bucket_name = "your-bucket-name"
+    # source_file_name = "local/path/to/file"
+    # destination_blob_name = "storage-object-name"
+
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(destination_blob_name)
+
+    blob.upload_from_filename(source_file_name)
+
+    print(
+        "File {} uploaded to {}.".format(
+            source_file_name, destination_blob_name
+        )
+    )
+
+def get_video(path):
+    """Transcribe speech from a video stored on GCS."""
+    from google.cloud import videointelligence
+
+    video_client = videointelligence.VideoIntelligenceServiceClient()
+    features = [videointelligence.Feature.SPEECH_TRANSCRIPTION]
+
+    config = videointelligence.SpeechTranscriptionConfig(
+        language_code="en-US", enable_automatic_punctuation=True
+    )
+    video_context = videointelligence.VideoContext(speech_transcription_config=config)
+
+    operation = video_client.annotate_video(
+        request={
+            "features": features,
+            "input_uri": path,
+            "video_context": video_context,
+        }
+    )
+
+    print("\nProcessing video for speech transcription.")
+
+    result = operation.result(timeout=600)
+
+    # There is only one annotation_result since only
+    # one video is processed.
+    annotation_results = result.annotation_results[0]
+    for speech_transcription in annotation_results.speech_transcriptions:
+
+        # The number of alternatives for each transcription is limited by
+        # SpeechTranscriptionConfig.max_alternatives.
+        # Each alternative is a different possible transcription
+        # and has its own confidence score.
+        for alternative in speech_transcription.alternatives:
+            print("Alternative level information:")
+
+            print("Transcript: {}".format(alternative.transcript))
+            print("Confidence: {}\n".format(alternative.confidence))
+
+            print("Word level information:")
+            for word_info in alternative.words:
+                word = word_info.word
+                start_time = word_info.start_time
+                end_time = word_info.end_time
+                print(
+                    "\t{}s - {}s: {}".format(
+                        start_time.seconds + start_time.microseconds * 1e-6,
+                        end_time.seconds + end_time.microseconds * 1e-6,
+                        word,
+                    )
+                )
+        
+
 def detect_faces(path):
     """Detects faces in an image."""
 
@@ -102,8 +174,16 @@ def text_sentiment(text):
     return(score)
 
 if __name__ == '__main__':
-    path = "pictures/happyperson.jpg"
+    """path = "pictures/happyperson.jpg"
     sound_path = "gs://cloud-samples-data/speech/brooklyn_bridge.raw"
     #detect_faces(path)
     text = speech_to_text(sound_path)
-    text_sentiment(text)
+    text_sentiment(text)"""
+
+    bucket_name = "prac_interview"
+    source_file_name = "pictures/testvideo.mp4"
+    destination_blob_name = "testvideo.mp4"
+    # This uploads file to cloud storage
+    #upload_blob(bucket_name,source_file_name,destination_blob_name)
+    video_path = "gs://prac_interview/testvideo.mp4"
+    get_video(video_path)
