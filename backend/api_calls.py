@@ -34,10 +34,12 @@ def detect_faces(path):
         print('surprise: {}'.format(likelihood_name[face.surprise_likelihood]))
         print('sorrow: {}'.format(likelihood_name[face.sorrow_likelihood]))
 
-        vertices = (['({},{})'.format(vertex.x, vertex.y)
+        #print(face.joy_likelihood)
+
+        """vertices = (['({},{})'.format(vertex.x, vertex.y)
                     for vertex in face.bounding_poly.vertices])
 
-        print('face bounds: {}'.format(','.join(vertices)))
+        print('face bounds: {}'.format(','.join(vertices)))"""
 
     if response.error.message:
         raise Exception(
@@ -92,4 +94,5 @@ def text_sentiment():
     return(score)
 
 if __name__ == '__main__':
+    path = "pictures/happyperson.jpg"
     detect_faces(path)
