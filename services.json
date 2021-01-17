@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "creatica-295502",
+  "private_key_id": "bd0e986dac3eb3705296e207cf640e94adf2ada0",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDDLdr/Ta30fuYv\nRKG+AJ3SF2IszMUbgNOhME+0pi9ZKUYarVfjtGEchUDpmsPOJJGHfWZ7xdgXV3Wf\n65GFNkULhoKEwE1IeEWRSS0pI132uwrv8Q/oLdTMmKLjZNW0SzG5c9EM81UxqE22\n1iUZvwzsuPWF0OxEOmmsf1ktj6k/bD4TDJjt/vSAEjQI07eIy7B9g/e4f3ndN8xF\nQS/tp1wvZ9zREXY+Qi7GPEnAl0DwU8Ajak1by/2L25jbxUUyS/t2CM67YA/NxxPV\nsRil9RszyDF5pn2oB2MTgBlN47PAKd5pesEqqGRby26lRgREpFNEDB06TyEsyXC3\n24HBz2AjAgMBAAECggEAHJzSz32MRFz8Eq7dhTSi7kMmTcoBFUyX+bfS33lDVK9T\nyyJhUYzGdb9lKjnZfZVnzjSIexmgWZ+lKzoF/cDcc1mXNa3ZRof3LtrK5457Pmni\nKxWsTs21Nf8kVfCY0ZL6aaT8XwknEp4JMoYHL1SOKP/eYm0jzcbAahzLLn4yggzz\nA/3RfrG5ocFT9eZSUmhP+xMUcNX187NPKFxXe5BkP7KFIEfJR50P20mqO94/mhUt\nbMvZDUuYgSSAIr4kFugazqXXIUNoMtZRWTS5AqXToSk4ntSJLzyQJNXYTJx/6iBV\npM59l4tHoMWfKCaY1VR11xdlKT6zjYWIhVJjKO96sQKBgQDvq3yX3orsqKBJgqj1\nClnsu6ERpO7UlAVhkWDfc7xZZcHElu49laQg4INN++tBPSuq2ProX5WChej0h93e\n9W5ThhUghRdtLpn0hJYaycHoQz6t1v1/DqaLn2muFGAMzXdr7Ac7DsiE6n7dD8J4\nKCS/TeKYXuA8nCuHJT5fVoti0QKBgQDQelNbygWI8PWe7HrFdXYOwU/TmYsAnDtV\naHfu9HczHvLF1IM88CAxg3cngavdzCgAxi88PWlJROKbZRivcipqwHA6qNi5Q6W3\nbIx73zBM7tX3iyCv8leZQ8dpCnaKrGYPSKYghUn1bIyqzA0X9slh5+1Ru73ZkUtE\n57yGFEbIswKBgQDAkycalEtGWzvntR/zPK0CxcRm/AKXNpSYUArpoQIfRt8KCkhF\nnZ5yeFOo7pmaIv+aWJxK6LqmVNjY2u7Qvp42aI9DQQ2QwhgcXAiMX7751EZhwlSP\nqgLyP1XX9TE0OEgTpGQu9PLzscPb9lTI3WChgoBm9BzzNnzXK3rReiWncQKBgQCr\n5uHLQvZzZ3SwmX/WR7eUDRQcf3PdifVmxGB4WX3cWj2GoGeinMF+8k8S9VpY5dlq\nYgBa5KxnLPTJe3/yUunk4k7oH4eso7oGV+wyy+MQ3LLzjfXi/qn6h6fq1iTOzb7O\nBXJuSFmmk94di2mUg/qjz1ChX3P47VQqOgb6a8e9/wKBgEtmlaV5FuNAqjCIbGqS\nqJttgP8iRLTDeUntbdoZnILvPFDJew5Cvv0faXbCI3jvSomTEL/PEyrmZQXLcb40\nzICcUgO1jPTHc07/wN5nlKIMREZU1K9iKL+WP4xwOsa/joARv4hsBtiIzgPQn6pj\nDQDY7QPz/9us8J9EqbD87DFW\n-----END PRIVATE KEY-----\n",
+  "client_email": "practiceinterview@creatica-295502.iam.gserviceaccount.com",
+  "client_id": "114093045737637276049",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/practiceinterview%40creatica-295502.iam.gserviceaccount.com"
+}
