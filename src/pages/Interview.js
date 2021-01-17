@@ -64,19 +64,19 @@ export class Interview extends Component {
                 (<button style={{
                     position: 'absolute', left: '70%', top: '33%',
                     transform: 'translate(-50%, -50%)'
-                }} onClick={this.startTimer}>Ready!</button>)}
+                }} type="button" class="btn btn-success" onClick={this.startTimer}>Ready!</button>)}
 
                 {this.state.timerOn === true && this.state.timerTime > 0 && 
                 (<button style={{
                     position: 'absolute', left: '70%', top: '33%',
                     transform: 'translate(-50%, -50%)'
-                }} onClick={this.stopTimer}>Pause</button>)}
+                }} type="button" class="btn btn-primary" onClick={this.stopTimer}>Pause</button>)}
 
                 {this.state.timerOn === false && this.state.timerTime > 0 && 
                 (<button style={{
-                    position: 'absolute', left: '77%', top: '33%',
+                    position: 'absolute', left: '70%', top: '33%',
                     transform: 'translate(-50%, -50%)'
-                }} onClick={this.startTimer}>Resume</button>)}
+                }} type="button" class="btn btn-primary" onClick={this.startTimer}>Resume</button>)}
 
                 <Webcam
                     style={{ //centering the videofeed
