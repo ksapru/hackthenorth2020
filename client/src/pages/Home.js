@@ -23,7 +23,7 @@ function Landing() {
 
 	return (
 
-      
+        
 		<div className="this" style={{width:"60%"}}> 
                 <h6> bug  </h6>
                 <h6> bug  </h6>
