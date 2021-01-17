@@ -31,10 +31,10 @@ def render_vid():
 
     res = {
         "text": text,
-        "sentiment": sentiment,
-        "smiling": smiling,
-        "looking_at_camera": looking_at_camera,
-        "eyes_visible": eyes_visible
+        "sentiment": sentiment * 100,
+        "smiling": smiling * 100,
+        "looking_at_camera": looking_at_camera * 100,
+        "eyes_visible": eyes_visible * 100
     }
 
     return res
