@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import Webcam from "react-webcam";
 import './Interview.css';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
 
 
 export class Interview extends Component {
@@ -14,27 +16,36 @@ export class Interview extends Component {
     constructor(props) {
         // Required step: always call the parent class' constructor
         super(props);
-    
+       
+        
+
         // Set the state directly. Use props if necessary.
         this.state = {
             timerOn: false, //timer will not start automatically
             timerStart: 0, //timer will count up from 0
             timerTime: 0,
-            output: null
+            output: null,
+            count: 0
+            
         };
-      }
+    }
+
+    // const [merchants, setMerchants] = useState(false);
+    // useEffect(() => {
+    //     getMerchant();
+    // }, []);
 
     // This function fetch the api
-    addStuffFromApi = () => {
-        fetch("/output").then(response=>response.json()).then(data =>{console.log(data); this.setState({output: data.output})})
-    }
+    // addStuffFromApi = () => {
+    //     fetch("/output").then(response=>response.json()).then(data =>{console.log(data); this.setState({output: data.output})})
+    // }
 
 
     // This function update the state (this.state)
-    componentDidMount = () => {
-        this.addStuffFromApi();
-        console.log(this.state)
-    }
+    // componentDidMount = () => {
+    //     this.addStuffFromApi();
+    //     console.log(this.state)
+    // }
 
     startTimer = () => {
         this.setState({
@@ -42,7 +53,7 @@ export class Interview extends Component {
             timerTime: this.state.timerTime,
             timerStart: Date.now() - this.state.timerTime
         });
-        this.timer = setInterval ( () => {
+        this.timer = setInterval(() => {
             this.setState({
                 timerTime: Date.now() - this.state.timerStart
             });
@@ -71,14 +82,23 @@ export class Interview extends Component {
             facingMode: "user" //front-facing camera
         };
 
-        const {timerTime} = this.state;
+        const questionList = [
+            "Tell me about yourself",
+            "Why do you want this job?",
+            "What are your greatest strength?",
+            "What would you consider to be your weaknesses?"
+        ]
+
+        const { timerTime } = this.state;
         let hours = ("0" + (Math.floor(timerTime / 3600000) % 60)).slice(-2);
         let minutes = ("0" + (Math.floor(timerTime / 60000) % 60)).slice(-2);
         let seconds = ("0" + Math.floor(timerTime / 1000)).slice(-2);
 
-       
+      
+    
 
         return (
+
             <div class="flex-container">
                 <div class="instructions">
                     <h5>Instructions</h5>
@@ -91,25 +111,246 @@ export class Interview extends Component {
                     </p>
                 </div>
                 <div class="time">
-                    <div class="time-display">  
+                    <div class="time-display">
                         <h2>
                             {hours} : {minutes} : {seconds}
                         </h2>
                     </div>
 
                     <div class="time-button">
-                        {this.state.timerOn === false && this.state.timerTime === 0 && 
-                        (<button type="button" class="btn btn-success" onClick={this.startTimer}>Ready!</button>)}
+                        {this.state.timerOn === false && this.state.timerTime === 0 &&
+                            (<button type="button" class="btn btn-success" onClick={this.startTimer}>Ready!</button>)}
 
-                        {this.state.timerOn === true && this.state.timerTime > 0 && 
-                        (<button type="button" class="btn btn-primary" onClick={this.stopTimer}>Pause</button>)}
+                        {this.state.timerOn === true && this.state.timerTime > 0 &&
+                            (<button type="button" class="btn btn-primary" onClick={this.stopTimer}>Pause</button>)}
 
-                        {this.state.timerOn === false && this.state.timerTime > 0 && 
-                        (<button type="button" class="btn btn-primary" onClick={this.startTimer}>Resume</button>)}
+                        {this.state.timerOn === false && this.state.timerTime > 0 &&
+                            (<button type="button" class="btn btn-primary" onClick={this.startTimer}>Resume</button>)}
                     </div>
                 </div>
 
-                <h1>Flask says {this.state.output}</h1>
+                <Alert variant="success">
+                    <Alert.Heading>Hey, nice to see you</Alert.Heading>
+                    <p>
+                        <h3>Question {Math.floor(1, 10)}: </h3>
+
+                        <h4>{questionList[Math.floor(0, 4)]}</h4>
+                    </p>
+                    <hr />
+                    <p className="mb-0"></p>
+
+
+
+
+                    <Button variant="primary" href="/Results"> Next </Button>{' '}
+
+
+
+
+                </Alert>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <div class="video">
                     <Webcam
