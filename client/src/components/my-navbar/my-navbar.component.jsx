@@ -22,10 +22,10 @@ const MyNavbar = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto ">
-              <Nav.Link href="#Setup">Setup</Nav.Link>
-              <Nav.Link href="#Home">Home</Nav.Link>
-              <Nav.Link href="#Interview">Interview</Nav.Link>
-              <Nav.Link href="#Results">Results</Nav.Link>
+              {/* <Nav.Link href="#Setup">Setup</Nav.Link> */}
+              <Nav.Link href="Home">Home</Nav.Link>
+              <Nav.Link href="Interview">Interview</Nav.Link>
+              <Nav.Link href="Results">Results</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </div>
