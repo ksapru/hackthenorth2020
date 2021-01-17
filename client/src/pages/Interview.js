@@ -109,8 +109,6 @@ export class Interview extends Component {
                     </div>
                 </div>
 
-                <h1>i</h1>
-                <h1>i</h1>
                 <h1>Flask says {this.state.output}</h1>
 
                 <div class="video">
