@@ -3,13 +3,33 @@ import Button from '@material-ui/core/Button';
 import React, { Component } from 'react';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid'
-// import CircularProgress from '@material-ui/core/CircularProgress';
-// import Divider from '@material-ui/core/Divider';
-// import { Line } from 'react-chartjs-2';
 
 
 export class Results extends Component {
+
+    constructor(props) {
+        // Required step: always call the parent class' constructor
+        super(props);
     
+        // Set the state directly. Use props if necessary.
+        this.state = {
+            text: "",
+            sentiment: 0,
+            smiling: 0,
+            looking_at_camera: 0,
+            eyes_visible: 0
+        };
+      }
+    
+    getDataFromGCD = () => {
+        fetch("/render").then(response=>response.json()).then(data =>{console.log(data); this.setState({text: data.text, sentiment: data.sentiment, smiling: data.smiling, looking_at_camera: data.looking_at_camera, eyes_visible: data.eyes_visible})});
+    }
+
+    componentDidMount = () => {
+        this.getDataFromGCD();
+        console.log(this.state);
+    }
+
     render() {
         const state = {
             labels: ['1', '2', '3', '4', '5'],
@@ -72,26 +92,28 @@ export class Results extends Component {
                     </Grid>
                 </Grid>
     
+
+                <h2>Please wait while the data is loading</h2>
                 <table>
                     <tr>
                         <td>Text</td>
-                        <td>Smith</td>
+                        <td>{this.state.text}</td>
                     </tr>
                     <tr>
                         <td>Sentiment</td>
-                        <td>Jackson</td>
+                        <td>{this.state.sentiment}%</td>
                     </tr>
                     <tr>
                         <td>Smiling</td>
-                        <td>Jackson</td>
+                        <td>{this.state.smiliing}%</td>
                     </tr>
                     <tr>
                         <td>Looking at the camera</td>
-                        <td>Jackson</td>
+                        <td>{this.state.looking_at_camera}%</td>
                     </tr>
                     <tr>
                         <td>Eye Visible</td>
-                        <td>Jackson</td>
+                        <td>{this.state.eyes_visible}%</td>
                     </tr>
                 </table>
             </div>
