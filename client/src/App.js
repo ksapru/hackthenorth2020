@@ -10,12 +10,12 @@ function App() {
   const Nexmo = require('nexmo');
 
   const nexmo = new Nexmo({
-    apiKey: '6bce7d77',
-    apiSecret: '9PIhZMh74Fyx5gJV',
+    apiKey: 'apiKey',
+    apiSecret: 'apiSecret',
   });
   
-  // const from = '15715097646';
-  // const to = '185797222961';
+  // const from = 'phoneNumber1';
+  // const to = 'phoneNumber1';
   // const text = 'Hey! Get prepared! Your interview is due in 10 minutes';
   
   // nexmo.message.sendSms(from, to, text);
