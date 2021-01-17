@@ -59,7 +59,7 @@ def get_video(path):
     print("\nProcessing video for speech transcription.")
 
     result = operation.result(timeout=600)
-
+    print("\nFinished processing.\n")
     # There is only one annotation_result since only
     # one video is processed.
     annotation_results = result.annotation_results[0]
@@ -95,7 +95,9 @@ def get_video(path):
                 """
     return(final_text)
 
-def detect_faces2(gcs_uri="gs://prac_interview/testvideo.mp4"):
+# Takes in video gcs_uri as input
+# Returns list with 3 things: smiling, looking_at_camera and eyes_visible percentage
+def face_detect_video(gcs_uri="gs://prac_interview/testvideo.mp4"):
     """Detects faces in a video."""
 
     client = videointelligence.VideoIntelligenceServiceClient()
@@ -117,12 +119,12 @@ def detect_faces2(gcs_uri="gs://prac_interview/testvideo.mp4"):
 
     print("\nProcessing video for face detection annotations.")
     result = operation.result(timeout=300)
-
     print("\nFinished processing.\n")
 
     # Retrieve the first result, because a single video was processed.
     annotation_result = result.annotation_results[0]
-
+    looking_at_camera_count = 0
+    tracking = [0,0,0] #smiling looking_at_camera, eyes_visible
     for annotation in annotation_result.face_detection_annotations:
         print("Face detected:")
         for track in annotation.tracks:
@@ -138,22 +140,40 @@ def detect_faces2(gcs_uri="gs://prac_interview/testvideo.mp4"):
             # Each segment includes timestamped faces that include
             # characteristics of the face detected.
             # Grab the first timestamped face
-            timestamped_object = track.timestamped_objects[0]
-            """box = timestamped_object.normalized_bounding_box
-            print("Bounding box:")
-            print("\tleft  : {}".format(box.left))
-            print("\ttop   : {}".format(box.top))
-            print("\tright : {}".format(box.right))
-            print("\tbottom: {}".format(box.bottom))"""
+            #print(track.timestamped_objects)
+            divisor = 1
+            track_length = (len(track.timestamped_objects))
+            print(track_length)
+            part_track = (int(track_length/divisor))
+            for i in range(part_track):
+                timestamped_object = track.timestamped_objects[divisor*i]
 
-            # Attributes include glasses, headwear, smiling, direction of gaze
-            print("Attributes:")
-            for attribute in timestamped_object.attributes:
-                print(
-                    "\t{}:{} {}".format(
-                        attribute.name, attribute.value, attribute.confidence
-                    )
-                )
+                """box = timestamped_object.normalized_bounding_box
+                print("Bounding box:")
+                print("\tleft  : {}".format(box.left))
+                print("\ttop   : {}".format(box.top))
+                print("\tright : {}".format(box.right))
+                print("\tbottom: {}".format(box.bottom))"""
+
+                # Attributes include glasses, headwear, smiling, direction of gaze
+                #print("Attributes:")
+                for attribute in timestamped_object.attributes:
+                    if(attribute.name == "smiling"):
+                        tracking[0] += attribute.confidence
+                    elif(attribute.name == "looking_at_camera"):
+                        tracking[1] += attribute.confidence
+                    elif(attribute.name == "eyes_visible"):
+                        tracking[2] += attribute.confidence
+                    """print(
+                        "\t{}:{} {}".format(
+                            attribute.name, attribute.value, attribute.confidence
+                        )
+                    )"""
+            print(tracking)
+            print(part_track)
+            tracking = [round(num/part_track, 2) for num in tracking]
+            print(tracking)
+    return(tracking)
 
 def detect_faces(path):
     """Detects faces in an image."""
@@ -254,5 +274,5 @@ if __name__ == '__main__':
     # This uploads file to cloud storage
     #upload_blob(bucket_name,source_file_name,destination_blob_name)
     video_path = "gs://prac_interview/testvideo.mp4"
-    get_video(video_path)
-    detect_faces2()
+    #get_video(video_path)
+    face_detect_video()
