@@ -23,12 +23,21 @@ def render_vid():
     percentages = calls.face_detect_video(gcs_uri=video_path)
     [smiling, looking_at_camera, eyes_visible] = percentages
     # TODO: figure out the best way to return all these variables
-    print(text)
-    print(sentiment)
-    print(smiling)
-    print(looking_at_camera)
-    print(eyes_visible)
-    return text
+    print(f'text: {text}')
+    print(f'sentiment: {sentiment}')
+    print(f'smiling: {smiling}')
+    print(f'looking at camera: {looking_at_camera}')
+    print(f'eye visible {eyes_visible}')
+
+    res = {
+        "text": text,
+        "sentiment": sentiment,
+        "smiling": smiling,
+        "looking_at_camera": looking_at_camera,
+        "eyes_visible": eyes_visible
+    }
+
+    return res
 
 if __name__ == '__main__':
     app.run()
