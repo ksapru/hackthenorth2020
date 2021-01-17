@@ -3,11 +3,37 @@ import Webcam from "react-webcam"
 
 
 export class Interview extends Component {
-    state = {
-        timerOn: false, //timer will not start automatically
-        timerStart: 0, //timer will count up from 0
-        timerTime: 0
-    };
+    // state = {
+    //     timerOn: false, //timer will not start automatically
+    //     timerStart: 0, //timer will count up from 0
+    //     timerTime: 0,
+    //     output: ''
+
+    // };
+    constructor(props) {
+        // Required step: always call the parent class' constructor
+        super(props);
+    
+        // Set the state directly. Use props if necessary.
+        this.state = {
+            timerOn: false, //timer will not start automatically
+            timerStart: 0, //timer will count up from 0
+            timerTime: 0,
+            output: null
+        };
+      }
+
+    // This function fetch the api
+    addStuffFromApi = () => {
+        fetch("/output").then(response=>response.json()).then(data =>{console.log(data); this.setState({output: data.output})})
+    }
+
+
+    // This function update the state (this.state)
+    componentDidMount = () => {
+        this.addStuffFromApi();
+        console.log(this.state)
+    }
 
     startTimer = () => {
         this.setState({
@@ -77,6 +103,10 @@ export class Interview extends Component {
                     position: 'absolute', left: '77%', top: '33%',
                     transform: 'translate(-50%, -50%)'
                 }} onClick={this.startTimer}>Resume</button>)}
+
+                <h1>i</h1>
+                <h1>i</h1>
+                <h1>Flask says {this.state.output}</h1>
 
                 <Webcam
                     style={{ //centering the videofeed

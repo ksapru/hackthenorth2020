@@ -8,9 +8,9 @@ app = Flask(__name__)
 def hello_world():
     return 'Hello World!'
 
-@app.route('/time')
-def get_current_time():
-    return {'time': time.time()}
+@app.route('/output', methods=['GET'])
+def getOutput():
+    return {'output': 'the data'}
 
 if __name__ == '__main__':
     app.run()
