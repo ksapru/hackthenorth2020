@@ -1,6 +1,7 @@
 from flask import Flask
 import time
 
+import backend.api_calls as calls
 app = Flask(__name__)
 
 
@@ -11,6 +12,23 @@ def hello_world():
 @app.route('/output', methods=['GET'])
 def getOutput():
     return {'output': 'the data'}
+    
+@app.route('/render')
+def render_vid():
+    video_path = "gs://prac_interview/testvideo.mp4"
+    text = calls.get_video(video_path)
+    sentiment = calls.text_sentiment(text)
+
+    #returns percentage values
+    percentages = calls.face_detect_video(gcs_uri=video_path)
+    [smiling, looking_at_camera, eyes_visible] = percentages
+    # TODO: figure out the best way to return all these variables
+    print(text)
+    print(sentiment)
+    print(smiling)
+    print(looking_at_camera)
+    print(eyes_visible)
+    return text
 
 if __name__ == '__main__':
     app.run()
