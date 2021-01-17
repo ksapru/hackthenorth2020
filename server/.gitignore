@@ -2,7 +2,7 @@ services.json
 
 venv
 __pycache__
-env
+.env
 .idea
 .dist
 .DS_Store
