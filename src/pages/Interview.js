@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import Webcam from "react-webcam"
+import React, { Component } from 'react';
+import Webcam from "react-webcam";
+import './Interview.css';
 
 
 export class Interview extends Component {
@@ -52,40 +53,42 @@ export class Interview extends Component {
        
 
         return (
-            <div>
-                <h2 style={{
-                    position: 'absolute', left: '33.75%', top: '33%',
-                    transform: 'translate(-50%, -50%)'
-                }}>
-                    {hours} : {minutes} : {seconds}
-                </h2>
+            <div class="flex-container">
+                <div class="instructions">
+                    <h5>Instructions</h5>
+                    <p>
+                        Time for some interview practice! The questions will be displayed at the bottom of the webcam video one at a time.
+                        When you're done answering the question, click the 'next' button for the next question. The webcam video will analyze
+                        your interview behaviours and there will be some feedback at the end of your practice on what you can improve on based
+                        on the analysis. There is also a timer that will count up and tell you how much time your "interview" took.
+                        Whenever you're ready to start, click the 'Ready!' button. All the best!
+                    </p>
+                </div>
+                <div class="time">
+                    <div class="time-display">  
+                        <h2>
+                            {hours} : {minutes} : {seconds}
+                        </h2>
+                    </div>
 
-                {this.state.timerOn === false && this.state.timerTime === 0 && 
-                (<button style={{
-                    position: 'absolute', left: '70%', top: '33%',
-                    transform: 'translate(-50%, -50%)'
-                }} onClick={this.startTimer}>Ready!</button>)}
+                    <div class="time-button">
+                        {this.state.timerOn === false && this.state.timerTime === 0 && 
+                        (<button type="button" class="btn btn-success" onClick={this.startTimer}>Ready!</button>)}
 
-                {this.state.timerOn === true && this.state.timerTime > 0 && 
-                (<button style={{
-                    position: 'absolute', left: '70%', top: '33%',
-                    transform: 'translate(-50%, -50%)'
-                }} onClick={this.stopTimer}>Pause</button>)}
+                        {this.state.timerOn === true && this.state.timerTime > 0 && 
+                        (<button type="button" class="btn btn-primary" onClick={this.stopTimer}>Pause</button>)}
 
-                {this.state.timerOn === false && this.state.timerTime > 0 && 
-                (<button style={{
-                    position: 'absolute', left: '77%', top: '33%',
-                    transform: 'translate(-50%, -50%)'
-                }} onClick={this.startTimer}>Resume</button>)}
+                        {this.state.timerOn === false && this.state.timerTime > 0 && 
+                        (<button type="button" class="btn btn-primary" onClick={this.startTimer}>Resume</button>)}
+                    </div>
+                </div>
 
-                <Webcam
-                    style={{ //centering the videofeed
-                        position: 'absolute', left: '50%', top: '70%',
-                        transform: 'translate(-50%, -50%)'
-                    }}
-                    audio={true}
-                    videoConstraints={videoConstraints}
-                />
+                <div class="video">
+                    <Webcam
+                        audio={true}
+                        videoConstraints={videoConstraints}
+                    />
+                </div>
             </div>
         )
     }
