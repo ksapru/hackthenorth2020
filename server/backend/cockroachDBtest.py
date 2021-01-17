@@ -4,6 +4,7 @@ from sqlalchemy import create_engine, Column, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from cockroachdb.sqlalchemy import run_transaction
+from flask import jsonify
 
 import time
 import random
@@ -19,7 +20,7 @@ def createQuestions(conn):
         cur.execute(
             "CREATE TABLE IF NOT EXISTS interviewQs (id integer primary key, question VARCHAR not null)"
         )
-        cur.execute("INSERT INTO interviewQs (id, question) VALUES (1, '1000'), (2, 250)")
+        # cur.execute("INSERT INTO interviewQs (id, question) VALUES (1, 'Tell me about yourself')")
         logging.debug("createQuestions(): status message: %s", cur.statusmessage)
     conn.commit()
 
@@ -62,6 +63,8 @@ def main():
     database="michaelchang",
     user="michaelchang",
     password="domics2017")
+
+    createQuestions(conn)
 
     printQuestion(conn)
 
