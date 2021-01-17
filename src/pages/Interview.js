@@ -79,7 +79,7 @@ export class Interview extends Component {
                 }} type="button" class="btn btn-primary" onClick={this.startTimer}>Resume</button>)}
 
                 <Webcam
-                    style={{ //centering the videofeed
+                    style={{
                         position: 'absolute', left: '50%', top: '70%',
                         transform: 'translate(-50%, -50%)'
                     }}
