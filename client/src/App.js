@@ -14,11 +14,11 @@ function App() {
     apiSecret: '9PIhZMh74Fyx5gJV',
   });
   
-  const from = '15715097646';
-  const to = '185797222961';
-  const text = 'Hey! Get prepared! Your interview is due in 10 minutes';
+  // const from = '15715097646';
+  // const to = '185797222961';
+  // const text = 'Hey! Get prepared! Your interview is due in 10 minutes';
   
-  nexmo.message.sendSms(from, to, text);
+  // nexmo.message.sendSms(from, to, text);
       
   return (
 

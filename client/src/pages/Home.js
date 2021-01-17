@@ -29,8 +29,7 @@ function Landing() {
                 <h6> bug  </h6>
                 <h6> bug  </h6>
   
-        <Card border="success" style={{ width: '38rem' }} align="left"  >
-    
+     
 
 			<Grid container spacing={2} className={classes.container} align="center">
 				<Grid item xs={200}>
@@ -46,8 +45,7 @@ function Landing() {
                     <Grid item xs={2}>
 				</Grid>
                 </Grid>
-                </Card>
-
+ 
             </div>		
 	);
 }

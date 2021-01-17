@@ -21,7 +21,7 @@ hr {
 }
 
 .App {
-  background: rgb(182, 182, 182);
+  background-image: url(https://inspirationfeed.com/wp-content/uploads/2020/01/chesser.jpg); 
   scroll-margin-block: auto;
   background-size: cover;
   position: absolute;
@@ -29,7 +29,7 @@ hr {
   min-height: 100%;
   background-position: center;
   text-align: center;
-}
+ }
 
-
+ 
 

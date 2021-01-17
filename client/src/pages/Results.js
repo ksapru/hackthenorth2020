@@ -74,7 +74,7 @@ export class Results extends Component {
                     
                     <Grid item xs={1}>
                         <Box style={{border: "9px solid #E76F51", height: "145px", width: "145px", borderRadius: "50%", marginTop:"100px", marginLeft: "45px"}}/>
-                        <Typography varaint="h3" style={{color: "white", fontSize: "20px", fontFamily: "Montserrat", marginTop: "-172px", marginLeft: "81px", marginTop: "10px"}}><strong> Eye Visiblility </strong></Typography>
+                        <Typography varaint="h3" style={{color: "white", fontSize: "20px", fontFamily: "Montserrat", marginTop: "-162px", marginLeft: "81px", marginTop: "10px"}}><strong> Eye Visiblility </strong></Typography>
                         <Typography varaint="h3" style={{color: "white", fontSize: "45px", fontFamily: "Montserrat", marginTop: "-181px", marginLeft: "94px"}}><strong>{this.state.eyes_visible}%</strong></Typography>
                     </Grid>
                 </Grid>
