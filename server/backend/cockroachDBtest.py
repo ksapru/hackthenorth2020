@@ -35,34 +35,12 @@ def printQuestion(conn):
             print(row)
 
 
-def parse_cmdline():
-    parser = ArgumentParser(description=__doc__,
-                            formatter_class=RawTextHelpFormatter)
-    parser.add_argument(
-        "dsn",
-        help="database connection string\n\n"
-             "For cockroach demo, use postgres://user@trusty-lemur-8c3.gcp-northamerica-northeast1.cockroachlabs.cloud:26257/danielye?sslmode=verify-full&sslrootcert=/Users/michaelchang/Desktop/certs/trusty-lemur-ca.crt,\n"
-             "with the username and password created in the demo cluster, and the hostname and port listed in the\n"
-             "(sql/tcp) connection parameters of the demo cluster welcome message."
-    )
-
-    parser.add_argument("-v", "--verbose",
-                        action="store_true", help="print debug info")
-
-    opt = parser.parse_args()
-    return opt
-
 def main():
-    # opt = parse_cmdline()
-    # conn = psycopg2.connect(opt.dsn)
-
-    # conn.close()
-
     conn = psycopg2.connect(
-    host="localhost",
-    database="DBname",
-    user="userName",
-    password="userPassword")
+        host="localhost",
+        database="DBname",
+        user="userName",
+        password="userPassword")
 
     createQuestions(conn)
 
