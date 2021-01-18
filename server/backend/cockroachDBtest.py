@@ -60,9 +60,9 @@ def main():
 
     conn = psycopg2.connect(
     host="localhost",
-    database="michaelchang",
-    user="michaelchang",
-    password="domics2017")
+    database="DBname",
+    user="userName",
+    password="userPassword")
 
     createQuestions(conn)
 
